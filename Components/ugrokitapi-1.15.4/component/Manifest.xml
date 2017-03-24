@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="ugrokitapi">
+  <name>U Grok It</name>
+  <publisher>U Grok It</publisher>
+  <publisher-url>http://dev.ugrokit.com</publisher-url>
+  <version>1.15.4</version>
+  <summary>API for interacting with a U Grok It UHF RFID reader</summary>
+  <packages>
+    <package id="Xamarin.Forms" version="2.3.2.127" />
+  </packages>
+  <screenshots>
+    <img src="screenshots/00.png" title="00" />
+  </screenshots>
+  <samples>
+    <sample id="ApiDemoAndroid">
+      <name>Android Sample</name>
+      <summary>Android Sample</summary>
+    </sample>
+    <sample id="ApiDemoForms">
+      <name>Forms Sample</name>
+      <summary>Forms Sample</summary>
+    </sample>
+    <sample id="ApiDemoIos">
+      <name>iOS Sample</name>
+      <summary>iOS Sample</summary>
+    </sample>
+  </samples>
+</component>
