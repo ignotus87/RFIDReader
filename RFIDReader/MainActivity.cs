@@ -11,6 +11,11 @@ namespace RFIDReader
     public class MainActivity : Activity
     {
         TextView LogMessage;
+        TextView UserNameText;
+        EditText UserName;
+        TextView SendToText;
+        EditText SendTo;
+        Button SendButton;
 
         private NfcAdapter _adapter = null;
         private NfcAdapter Adapter
@@ -35,6 +40,9 @@ namespace RFIDReader
         protected override void OnResume()
         {
             base.OnResume();
+
+
+
             EnableWriteMode();
         }
 
@@ -102,6 +110,32 @@ namespace RFIDReader
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Main);
             LogMessage = FindViewById<TextView>(Resource.Id.mifare_log);
+            UserNameText = FindViewById<TextView>(Resource.Id.user_name_text); 
+            SendToText  = FindViewById<TextView>(Resource.Id.send_to_text);
+
+            SendTo = FindViewById<EditText>(Resource.Id.send_to);
+            UserName = FindViewById<EditText>(Resource.Id.user_name);
+
+            SendButton = FindViewById<Button>(Resource.Id.send_button);
+
+            UserNameText.Text = "UserName:";
+            SendToText.Text = "SendTo:";
+
+            UserName.Text = "Mr Worker";
+            SendTo.Text = "someone@where.at";
+
+            SendButton.Text = "Send";
+            SendButton.Click += (sender, e) =>
+            {
+                var email = new Intent(Android.Content.Intent.ActionSend);
+
+                email.PutExtra(Android.Content.Intent.ExtraEmail, new string[] { SendTo.Text });
+                email.PutExtra(Android.Content.Intent.ExtraSubject, "NewCardNumber");
+                email.PutExtra (Android.Content.Intent.ExtraText, string.Format("New card number: {0}\r\nUser name: {1}", LogMessage.Text, UserName.Text));
+                email.SetType ("message/rfc822");
+                StartActivity (email);
+            };
+
             WriteLog("Screen started");
             if (Adapter == null)
             {
